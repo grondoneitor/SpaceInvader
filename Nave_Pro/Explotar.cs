@@ -8,5 +8,12 @@ namespace Nave_Pro
 {
     internal class Explotar
     {
+        public void Explosion(int x, int y)
+        {
+           Console.SetCursorPosition(x, y);
+            Console.Write(' ');
+
+        }
+
     }
 }

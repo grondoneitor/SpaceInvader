@@ -22,7 +22,7 @@
                     {
                         Proyectil[i].Mover();
                         DestruirProyectil(i);
-                   
+                        DestruirInvasora();
                     }
 
                 }
@@ -126,6 +126,29 @@
         }
 
 
+        public static void DestruirInvasora()
+        {
+            for (int j = 0; j < Proyectil.Count(); j++)
+            {
+               NaveProtectil proyectil = Proyectil[j];
+                Explotar explotar = new Explotar();
+                for (int i = 0; i < Invasora.Count(); i++)
+                {
+                    bool colision = proyectil.X == Invasora[i].X && proyectil.Y == Invasora[i].Y && !proyectil.EsRojo; 
+                    if (colision)
+                    {
+                        proyectil.EsRojo = true;
+                        explotar.Explosion(Invasora[i].X, Invasora[i].Y);
+                        Invasora[i].Clear();
+                        Invasora.Remove(Invasora[i]);
+
+                    }
+
+
+                }
+
+            }
+        }
 
     }
 }
