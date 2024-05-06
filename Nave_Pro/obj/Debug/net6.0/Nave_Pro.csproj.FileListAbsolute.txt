@@ -1,0 +1,14 @@
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\bin\Debug\net6.0\Nave_Pro.exe
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\bin\Debug\net6.0\Nave_Pro.deps.json
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\bin\Debug\net6.0\Nave_Pro.runtimeconfig.json
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\bin\Debug\net6.0\Nave_Pro.dll
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\bin\Debug\net6.0\Nave_Pro.pdb
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\Nave_Pro.GeneratedMSBuildEditorConfig.editorconfig
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\Nave_Pro.AssemblyInfoInputs.cache
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\Nave_Pro.AssemblyInfo.cs
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\Nave_Pro.csproj.CoreCompileInputs.cache
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\Nave_Pro.dll
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\refint\Nave_Pro.dll
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\Nave_Pro.pdb
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\Nave_Pro.genruntimeconfig.cache
+C:\ISTEA\Unidad 4\02-ClasesAbstractas\Nave_Pro\Nave_Pro\obj\Debug\net6.0\ref\Nave_Pro.dll
