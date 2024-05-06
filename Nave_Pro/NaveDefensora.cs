@@ -25,13 +25,19 @@ public NaveDefensora()
 
         public void MoverDerecha() 
         {
-            this.X++;
+            if (this.X < 78)
+            {
+                this.X++;
+            }
 
 
         }
         public void MoverIzquierda()
         {
-            this.X--;   
+            if (this.X > 0)
+            {
+                this.X--;
+            }
         }
 
     }

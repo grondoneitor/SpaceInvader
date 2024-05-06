@@ -6,16 +6,5 @@ using System.Threading.Tasks;
 
 namespace Nave_Pro
 {
-    abstract class NaveAutomatico : Nave
-    {
-
-
-
-        public abstract void Mover();
-
-        
-
-
-
-    }
+    public enum Direccion {Izquierda, Derecha }
 }
