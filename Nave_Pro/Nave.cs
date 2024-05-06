@@ -55,7 +55,7 @@ namespace Nave_Pro
         {
             ConsoleColor color = Console.ForegroundColor;
             if (EsRojo) Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(this.X,this.Y);
+             Console.SetCursorPosition(this.X,this.Y);
             Console.Write(this.Caracter);
             if (EsRojo) Console.ForegroundColor = color; //Restablece el color original
         }

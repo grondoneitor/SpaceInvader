@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Nave_Pro
 {
-    internal class NaveProtectil
+    internal class NaveProtectil:NaveAutomatico
     {
+
+        public override char Caracter { get { return '|'; } }
+
+        public override void Mover()
+        {
+                this.Y--;
+         
+        }
+
     }
 }

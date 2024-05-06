@@ -5,10 +5,11 @@
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            Random random = new Random();
-             bool salir = false;    
-             Defensora = new NaveDefensora();
-             Invasora = new List<NaveInvasora>();
+            bool salir = false;    
+            Defensora = new NaveDefensora();
+            Invasora = new List<NaveInvasora>();
+            Proyectil = new List<NaveProtectil>();
+
             ConsoleKeyInfo KeyInfo;
             InicianInvasoras();
             do
@@ -16,6 +17,14 @@
                 while (!Console.KeyAvailable && !salir)
                 {
                     Moverinvasoras();
+
+                    for (int i = 0; i < Proyectil.Count(); i++)
+                    {
+                        Proyectil[i].Mover();
+                        DestruirProyectil(i);
+                   
+                    }
+
                 }
 
       
@@ -29,6 +38,9 @@
 
 
         }
+
+        public static List<NaveProtectil> Proyectil { get; set; }
+
         public static List<NaveInvasora> Invasora { get; set;}
         public static NaveDefensora Defensora { get; set; }
         static bool MoverNave() 
@@ -47,10 +59,42 @@
                 case ConsoleKey.Escape:
                     salir = true;
                     break;
+                case ConsoleKey.Spacebar:
+                    if (!ExisteProyectil(Defensora.X))
+                    {
+                         NaveProtectil proyectil = new NaveProtectil();
+                        proyectil.X = Defensora.X;
+                        proyectil.Y = Defensora.Y -1;
+                        Proyectil.Add(proyectil);
+
+                    }
+                    break;
+            
             }
           return salir;
         }  
     
+        public static bool ExisteProyectil(int x)
+        {
+            bool existe = false;
+
+            foreach (NaveProtectil item in Proyectil)
+            {
+                if (item.X == x) existe = true;
+            }
+            return existe;
+        }
+
+
+        public static void DestruirProyectil(int i)
+        {
+            if (Proyectil[i].Y ==0)
+            {
+                Proyectil[i].Clear();
+                Proyectil.Remove(Proyectil[i]);
+            }
+
+        }
 
         public static void InicianInvasoras()
         {
@@ -80,6 +124,8 @@
             Thread.Sleep(50);
         
         }
+
+
 
     }
 }
