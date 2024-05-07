@@ -17,42 +17,32 @@
                 while (!Console.KeyAvailable && !salir)
                 {
                     Moverinvasoras();
-
+                    MostrarPuntaje();
+               
                     for (int i = 0; i < Proyectil.Count(); i++)
                     {
                         Proyectil[i].Mover();
                         DestruirProyectil(i);
                         DestruirInvasora();
-                      
                     }
                     if (Perdimos())
                     {
                         Console.SetCursorPosition(23, 14);
-                        Console.WriteLine("Perdiste ");
+                        Console.WriteLine($"Perdiste. puntaje final {valor} ");
+                        MostrarPuntaje();
                         break;
                     }else if (Ganamos())
                     {
                         Console.SetCursorPosition(23, 14);
-                        Console.WriteLine("Ganaste ");
+                        Console.WriteLine($"Ganaste. puntaje final {valor} ");
+                        MostrarPuntaje();
                         break;
                     }
-
-
-
                 }
-
-      
                 if (!salir) salir = MoverNave();
             } while (!salir);
-
-         
-
-
-
-
-
         }
-
+        public static Contador Contador { get; set; }
         public static List<NaveProtectil> Proyectil { get; set; }
 
         public static List<NaveInvasora> Invasora { get; set;}
@@ -80,14 +70,11 @@
                         proyectil.X = Defensora.X;
                         proyectil.Y = Defensora.Y -1;
                         Proyectil.Add(proyectil);
-
                     }
                     break;
-            
             }
           return salir;
         }  
-    
         public static bool ExisteProyectil(int x)
         {
             bool existe = false;
@@ -98,8 +85,6 @@
             }
             return existe;
         }
-
-
         public static void DestruirProyectil(int i)
         {
             if (Proyectil[i].Y ==0)
@@ -107,12 +92,9 @@
                 Proyectil[i].Clear();
                 Proyectil.Remove(Proyectil[i]);
             }
-
         }
-
         public static void InicianInvasoras()
         {
-
             for (int y = 1; y < 7; y++)
             {
                 for (int x = 0; x < 30; x++)
@@ -121,25 +103,17 @@
                     naveInvasora.Y = y;
                     naveInvasora.X = x * 2;
                     Invasora.Add(naveInvasora);
-
-
                 }
-
             }
         }
-
         public static void Moverinvasoras()
         {
             for (int i = 0; i < Invasora.Count(); i++)
             {
                 Invasora[i].Mover();
-
             }
             Thread.Sleep(50);
-        
         }
-
-
         public static void DestruirInvasora()
         {
             for (int j = 0; j < Proyectil.Count(); j++)
@@ -155,31 +129,20 @@
                         explotar.Explosion(Invasora[i].X, Invasora[i].Y);
                         Invasora[i].Clear();
                         Invasora.Remove(Invasora[i]);
-
                     }
-
-
                 }
-
             }
         }
-
-
-
         public static bool Perdimos()
         {
             bool ss = false;
             for (int i = 0; i < Invasora.Count(); i++)
             {
                 bool llega = Invasora[i].Y == Defensora.Y;
-
                 if (llega)
                 {
-         
                     ss= true;
                 }
-
-          
             }
             return ss; 
         }
@@ -191,9 +154,30 @@
             {
                 tt = true;
             }
-
             return tt;
         }
+        public static int valor;
+        public static void MostrarPuntaje()
+        {
+            int contador = 0;
+            int cantInvasoras = 180;
 
+            for ( int i = 0; i < Invasora.Count();  i++)
+            {
+                contador = cantInvasoras - Invasora.Count();
+                int puntajeFinal = contador * 20;
+                Contador contat = new Contador(puntajeFinal);
+                contat.Imprimir();
+                valor = puntajeFinal;
+            }
+            
+        }
+    
+        public static void MostrarPuntajeFinal()
+        {
+
+        }
+    
     }
+
 }
