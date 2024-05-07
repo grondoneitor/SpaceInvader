@@ -23,8 +23,14 @@
                         Proyectil[i].Mover();
                         DestruirProyectil(i);
                         DestruirInvasora();
+                      
                     }
-
+                    if (Perdimos())
+                    {
+                        Console.SetCursorPosition(23, 14);
+                        Console.WriteLine("Perdiste");
+                        break;
+                    }
                 }
 
       
@@ -149,6 +155,27 @@
 
             }
         }
+
+
+
+        public static bool Perdimos()
+        {
+            bool ss = false;
+            for (int i = 0; i < Invasora.Count(); i++)
+            {
+                bool llega = Invasora[i].Y == Defensora.Y;
+
+                if (llega)
+                {
+         
+                    ss= true;
+                }
+
+          
+            }
+            return ss; 
+        }
+
 
     }
 }
