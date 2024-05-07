@@ -28,9 +28,17 @@
                     if (Perdimos())
                     {
                         Console.SetCursorPosition(23, 14);
-                        Console.WriteLine("Perdiste");
+                        Console.WriteLine("Perdiste ");
+                        break;
+                    }else if (Ganamos())
+                    {
+                        Console.SetCursorPosition(23, 14);
+                        Console.WriteLine("Ganaste ");
                         break;
                     }
+
+
+
                 }
 
       
@@ -175,7 +183,17 @@
             }
             return ss; 
         }
+        public static bool Ganamos()
+        {
+            bool tt = false;
+            bool cantidad = Invasora.Count == 0;
+            if (cantidad)
+            {
+                tt = true;
+            }
 
+            return tt;
+        }
 
     }
 }
