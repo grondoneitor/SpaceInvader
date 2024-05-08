@@ -1,24 +1,43 @@
-﻿namespace Nave_Pro
+﻿using System;
+using System.Timers;
+using Timer = System.Threading.Timer;
+
+namespace Nave_Pro
 {
     internal class Program
     {
+        // Timer para el lanzamiento de proyectiles de nave invasora
+        //static Timer invasorTimer;
         static void Main(string[] args)
         {
+             
+
             Console.CursorVisible = false;
-            bool salir = false;    
+            bool salir = false;
             Defensora = new NaveDefensora();
             Invasora = new List<NaveInvasora>();
             Proyectil = new List<NaveProtectil>();
-
+            ProInvasora = new List<ProyectilInvasor>();
             ConsoleKeyInfo KeyInfo;
             InicianInvasoras();
+
+            // Crear y configurar el temporizador
+            //invasorTimer = new Timer(state => LanzamientoInvasoras(), null, 0, 1500);
+
+            // Iniciar el temporizador
+            //invasorTimer.Start();
+        
+
+
             do
             {
                 while (!Console.KeyAvailable && !salir)
                 {
                     Moverinvasoras();
                     MostrarPuntaje();
-               
+                    LanzarProyectilInvasor();
+                    LanzamientoInvasoras();
+
                     for (int i = 0; i < Proyectil.Count(); i++)
                     {
                         Proyectil[i].Mover();
@@ -31,7 +50,7 @@
                         Console.WriteLine($"Perdiste. puntaje final {valor} ");
                         MostrarPuntaje();
                         break;
-                    }else if (Ganamos())
+                    } else if (Ganamos())
                     {
                         Console.SetCursorPosition(23, 14);
                         Console.WriteLine($"Ganaste. puntaje final {valor} ");
@@ -41,13 +60,21 @@
                 }
                 if (!salir) salir = MoverNave();
             } while (!salir);
+
+            //invasorTimer.Dispose();
+
         }
+
+
+
         public static Contador Contador { get; set; }
         public static List<NaveProtectil> Proyectil { get; set; }
 
-        public static List<NaveInvasora> Invasora { get; set;}
+        public static List<NaveInvasora> Invasora { get; set; }
         public static NaveDefensora Defensora { get; set; }
-        static bool MoverNave() 
+        public static List<ProyectilInvasor> ProInvasora { get; set; }
+
+        static bool MoverNave()
         {
             bool salir = false;
             ConsoleKeyInfo key = Console.ReadKey(true);
@@ -66,15 +93,15 @@
                 case ConsoleKey.Spacebar:
                     if (!ExisteProyectil(Defensora.X))
                     {
-                         NaveProtectil proyectil = new NaveProtectil();
+                        NaveProtectil proyectil = new NaveProtectil();
                         proyectil.X = Defensora.X;
-                        proyectil.Y = Defensora.Y -1;
+                        proyectil.Y = Defensora.Y - 1;
                         Proyectil.Add(proyectil);
                     }
                     break;
             }
-          return salir;
-        }  
+            return salir;
+        }
         public static bool ExisteProyectil(int x)
         {
             bool existe = false;
@@ -87,7 +114,7 @@
         }
         public static void DestruirProyectil(int i)
         {
-            if (Proyectil[i].Y ==0)
+            if (Proyectil[i].Y == 0)
             {
                 Proyectil[i].Clear();
                 Proyectil.Remove(Proyectil[i]);
@@ -118,11 +145,11 @@
         {
             for (int j = 0; j < Proyectil.Count(); j++)
             {
-               NaveProtectil proyectil = Proyectil[j];
+                NaveProtectil proyectil = Proyectil[j];
                 Explotar explotar = new Explotar();
                 for (int i = 0; i < Invasora.Count(); i++)
                 {
-                    bool colision = proyectil.X == Invasora[i].X && proyectil.Y == Invasora[i].Y && !proyectil.EsRojo; 
+                    bool colision = proyectil.X == Invasora[i].X && proyectil.Y == Invasora[i].Y && !proyectil.EsRojo;
                     if (colision)
                     {
                         proyectil.EsRojo = true;
@@ -141,10 +168,10 @@
                 bool llega = Invasora[i].Y == Defensora.Y;
                 if (llega)
                 {
-                    ss= true;
+                    ss = true;
                 }
             }
-            return ss; 
+            return ss;
         }
         public static bool Ganamos()
         {
@@ -162,7 +189,7 @@
             int contador = 0;
             int cantInvasoras = 180;
 
-            for ( int i = 0; i < Invasora.Count();  i++)
+            for (int i = 0; i < Invasora.Count(); i++)
             {
                 contador = cantInvasoras - Invasora.Count();
                 int puntajeFinal = contador * 20;
@@ -170,14 +197,55 @@
                 contat.Imprimir();
                 valor = puntajeFinal;
             }
-            
-        }
-    
-        public static void MostrarPuntajeFinal()
-        {
 
         }
-    
+
+        public static bool DisparosDeInvasora(int x)
+        {
+            bool vemos = false;
+            foreach (ProyectilInvasor item in ProInvasora)
+            {
+                if (item.X == x) vemos = true;
+            }
+            return vemos;
+
+        }
+        static void LanzarProyectilInvasor()
+        {
+            Random rnd = new Random();
+
+            int ramdomNumber = 0;
+
+            //for (int i = 0; i < Invasora.Count(); i++)
+            //{
+            ramdomNumber = rnd.Next(Invasora.Count);
+
+            if (!DisparosDeInvasora(Invasora[ramdomNumber].X))
+            {
+                ProyectilInvasor proInvasora = new ProyectilInvasor();
+                proInvasora.X = Invasora[ramdomNumber].X;
+                proInvasora.Y = Invasora[ramdomNumber].Y + 1; // Mover el proyectil un paso hacia abajo
+                ProInvasora.Add(proInvasora);
+
+            }
+
+        }
+
+         private static void LanzamientoInvasoras()
+        {
+            foreach (ProyectilInvasor item in ProInvasora)
+            {
+                item.Mover(); // Ejecutar el método Mover de cada proyectil invasor
+            }
+            
+
+        }
+
+
     }
 
-}
+
+
+
+}   
+
